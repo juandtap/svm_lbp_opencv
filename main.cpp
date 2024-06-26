@@ -9,7 +9,7 @@
 
 using namespace cv;
 
-
+using namespace std;
 
 cv::Mat calculateLBP(const cv::Mat& src) {
     cv::Mat lbp_image;
@@ -72,12 +72,18 @@ int main() {
 
     // Cargar nueva imagen
     //cv::Mat newImage = cv::imread("./Images/roca_nueva.jpg", cv::IMREAD_UNCHANGED);
-    //cv::Mat newImage = cv::imread("./Images/madera2.jpeg", cv::IMREAD_UNCHANGED);
-    Mat newImage = imread("./Images/nueva_roca2.png", IMREAD_UNCHANGED);
+    Mat newImage = cv::imread("./Images/Test/madera_nueva_2.jpeg", cv::IMREAD_UNCHANGED);
+    //Mat newImage = imread("./Images/Test/roca_nueva.jpg", IMREAD_UNCHANGED);
     // Predecir la categoría de la nueva imagen
     int category = predictImage(newImage, svm);
-
-    std::cout << "La imagen pertenece a la categoría: " << category << std::endl;
+    string categoria;
+    if (category == 0){
+       categoria = "Roca";
+    } else {
+        categoria = "Madera";
+    }
+    
+    cout << "La imagen pertenece a la categoría: " << categoria << endl;
 
     return 0;
 }
